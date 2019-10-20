@@ -1,38 +1,40 @@
 import random
 import time
 import os
+import sys
 
 print("Welcome to my memory trainer, let's start. You will see a number, try to remember it.\nIf you will write the number correctly, you can go to next level.\nIf you won't, you will have to try again from start.")
-time.sleep(10)
-AreYouReady = input("Are you ready to play? Press 'y' to continue.")
-TryAgain = 'y'
+time.sleep(1)
+Restart = 'y'
 level = 0
-number = 1
-while TryAgain == 'y' or 'Y':
+max_level = 8
+showsec = 1
+waitsec = 1
+SkipTime = input("Do You want to skip waiting time for remembering numbers with Enter? Yes/No\n")
+
+    
+while Restart == 'y' or 'Y':
     RandomNumber = (random.randint(10**level, 10**(level+1)-1))
-    print (RandomNumber)
-    time.sleep(number)
+    print(RandomNumber)
+    if SkipTime == ("Yes" or "yes"):
+        input("Press Enter to continue and then wait for next command")
+    elif  SkipTime == "No" or "no":
+        time.sleep(showsec)
     os.system("clear")
+    time.sleep(waitsec)
     InputNumber = int(input("Now write here the number you saw. \n"))
-    if InputNumber == RandomNumber and level < 8:
-        print("Good job, your answer is correct, let's try something harder.")
-        if level < 8:
-            level = level + 1
-            number = number + 0.5
-            time.sleep(2)
-            continue
-    elif level == 8:
+    if InputNumber == RandomNumber and level < max_level:
+        print("Good job, your answer is correct, let's try something harder.\n")
+        level = level + 1
+        showsec = showsec + 0.5
+        waitsec = waitsec + 0.
+        time.sleep(1)
+        continue
+    elif level == max_level:
         print("Good job, that's it for today, we don't have more levels for you right now.")
         break
     else:
-        print("Sorry, that is not right, you can try it again if you want.")
-        TryAgain = input("If you want to try it again, type 'y', if you want to go to easier level, type 'n'\n")
-        if TryAgain == 'y' or 'Y':
-            print("Alright, let's try it again.")
-            continue
-        elif level > 0 and TryAgain == 'n' or 'N':
-            level-1
-            continue
-        else:
-            print("Neither of the conditions were matched, try it again with the same level.")
-            continue
+        print("Sorry, that is not right, you can try it again from the beginnng.")
+        level = 0
+        showsec = 1
+        waitsec = 1
