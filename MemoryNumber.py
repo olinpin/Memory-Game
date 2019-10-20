@@ -7,7 +7,7 @@ print("Welcome to my memory trainer, let's start. You will see a number, try to 
 time.sleep(1)
 Restart = 'y'
 level = 0
-max_level = 8
+max_level = 9
 showsec = 1
 waitsec = 1
 SkipTime = input("Do You want to skip waiting time for remembering numbers with Enter? Yes/No\n")
